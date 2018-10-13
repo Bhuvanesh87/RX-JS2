@@ -1,0 +1,20 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+</head>
+<body>
+       <input type="text">
+    <script src="https://unpkg.com/@reactivex/rxjs@5.3.0/dist/global/Rx.js"></script>
+     <script>
+           var outer = Rx.Observable.interval(1000).take(2);
+
+          var source = outer.mergeMap(function (x) { 
+                                                      return Rx.Observable.interval(500).take(3).map(y => `${x}:${y}`)
+                                                   });
+
+          source.subscribe(d => console.log(d));
+
+    </script>
+ </body>
+ </html>
